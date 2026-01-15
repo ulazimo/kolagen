@@ -11,7 +11,10 @@
       "Bash(. \"$NVM_DIR/nvm.sh\")",
       "Bash(nvm install:*)",
       "Bash(nvm use:*)",
-      "Bash(npx surge . --domain kolagen-pure.surge.sh)"
+      "Bash(npx surge . --domain kolagen-pure.surge.sh)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)"
     ]
   }
 }
