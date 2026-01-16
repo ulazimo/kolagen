@@ -1035,7 +1035,7 @@ h3 {
 
 .testimonials-slider {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
 }
@@ -1713,8 +1713,11 @@ h3 {
     .products-grid,
     .benefits-grid,
     .science-grid,
-    .testimonials-slider,
     .sustainability-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonials-slider {
         grid-template-columns: repeat(2, 1fr);
     }
 
