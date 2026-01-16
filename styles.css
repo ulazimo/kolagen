@@ -1,34 +1,34 @@
 /* ========================================
-   KOLAGEN PURE - Premium Collagen Website
-   Warm, earthy aesthetic with luxury feel
+   KOLAGEN FORTE - Premium Collagen Website
+   Pharmaceutical, clinical, trustworthy design
    ======================================== */
 
 /* CSS Variables */
 :root {
-    /* Colors - Warm earthy palette */
-    --color-primary: #A38C5E;
-    --color-primary-dark: #8B7650;
-    --color-primary-light: #C4A96D;
-    --color-secondary: #7C764C;
-    --color-accent: #5B4841;
+    /* Colors - Pharmaceutical/Clinical palette */
+    --color-primary: #1a365d;
+    --color-primary-dark: #0d1f3c;
+    --color-primary-light: #3182ce;
+    --color-secondary: #2b6cb0;
+    --color-accent: #4299e1;
 
-    --color-gold: #D4AF37;
-    --color-gold-light: #F8E0AE;
+    --color-silver: #cbd5e0;
+    --color-silver-light: #e2e8f0;
 
-    --color-bg: #FAFAFA;
-    --color-bg-warm: #EDE5DA;
-    --color-bg-cream: #FDF8F0;
+    --color-bg: #ffffff;
+    --color-bg-alt: #f7fafc;
+    --color-bg-section: #edf2f7;
 
-    --color-text: #2D2D2D;
-    --color-text-light: #666666;
-    --color-text-muted: #999999;
+    --color-text: #1a202c;
+    --color-text-light: #4a5568;
+    --color-text-muted: #718096;
 
     --color-white: #FFFFFF;
-    --color-border: #E5E5E5;
+    --color-border: #e2e8f0;
 
     /* Typography */
-    --font-heading: 'Montserrat', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Roboto', sans-serif;
+    --font-body: 'Roboto', sans-serif;
 
     /* Spacing */
     --spacing-xs: 0.5rem;
@@ -177,12 +177,13 @@ h3 {
     padding: 0.5rem 1rem;
     font-family: var(--font-heading);
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--color-primary);
-    background-color: var(--color-gold-light);
-    border-radius: var(--radius-full);
+    background-color: var(--color-silver-light);
+    border: 1px solid var(--color-silver);
+    border-radius: var(--radius-sm);
     margin-bottom: var(--spacing-sm);
 }
 
@@ -233,18 +234,20 @@ h3 {
 
 .logo-text {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--color-primary);
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: var(--color-text-light);
+    text-transform: uppercase;
 }
 
 .logo-subtext {
     font-family: var(--font-heading);
-    font-size: 0.625rem;
-    font-weight: 500;
-    letter-spacing: 0.3em;
-    color: var(--color-text-light);
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    text-transform: uppercase;
 }
 
 .nav-links {
@@ -361,9 +364,23 @@ h3 {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, var(--color-bg-cream) 0%, var(--color-bg-warm) 100%);
+    background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
     padding-top: 80px;
     overflow: hidden;
+}
+
+/* Hexagon pattern overlay */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='70' viewBox='0 0 60 70' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='%231a365d' stroke-width='0.5' opacity='0.05'/%3E%3C/svg%3E");
+    background-size: 60px 70px;
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 .hero-content {
@@ -383,17 +400,18 @@ h3 {
     padding: 0.5rem 1rem;
     font-family: var(--font-heading);
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.15em;
-    color: var(--color-primary-dark);
-    background-color: var(--color-gold-light);
-    border-radius: var(--radius-full);
+    color: var(--color-primary);
+    background-color: var(--color-silver-light);
+    border: 1px solid var(--color-silver);
+    border-radius: var(--radius-sm);
     margin-bottom: var(--spacing-md);
 }
 
 .hero h1 {
     margin-bottom: var(--spacing-md);
-    color: var(--color-accent);
+    color: var(--color-primary);
 }
 
 .hero-description {
@@ -477,14 +495,14 @@ h3 {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(145deg, #FFFFFF 0%, #F5F0E8 50%, #E8DFD0 100%);
+    background: linear-gradient(145deg, #FFFFFF 0%, #f7fafc 50%, #edf2f7 100%);
     border-radius: 8px;
     box-shadow:
-        0 25px 50px rgba(0,0,0,0.2),
-        0 10px 20px rgba(0,0,0,0.1),
-        inset 0 1px 0 rgba(255,255,255,0.8),
-        inset 0 -2px 10px rgba(0,0,0,0.05);
-    border: 1px solid rgba(163, 140, 94, 0.2);
+        0 25px 50px rgba(26, 54, 93, 0.15),
+        0 10px 20px rgba(26, 54, 93, 0.08),
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        inset 0 -2px 10px rgba(26, 54, 93, 0.03);
+    border: 1px solid var(--color-silver);
 }
 
 /* Side face of the box (3D effect) */
@@ -495,11 +513,11 @@ h3 {
     top: 10px;
     width: 25px;
     height: 95%;
-    background: linear-gradient(90deg, #D4C9B8 0%, #C4B9A8 100%);
+    background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e0 100%);
     transform: skewY(-40deg);
     transform-origin: top left;
     border-radius: 0 8px 8px 0;
-    box-shadow: inset -5px 0 15px rgba(0,0,0,0.1);
+    box-shadow: inset -5px 0 15px rgba(26, 54, 93, 0.08);
 }
 
 /* Top face of the box */
@@ -510,7 +528,7 @@ h3 {
     left: 5px;
     width: 175px;
     height: 25px;
-    background: linear-gradient(135deg, #A38C5E 0%, #8B7650 100%);
+    background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
     transform: skewX(-45deg) rotateX(60deg);
     border-radius: 4px;
     z-index: 2;
@@ -599,7 +617,7 @@ h3 {
 .product-card-image {
     position: relative;
     height: 280px;
-    background: linear-gradient(135deg, var(--color-bg-cream) 0%, var(--color-bg-warm) 100%);
+    background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-bg-section) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -620,14 +638,14 @@ h3 {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(145deg, #FFFFFF 0%, #F5F0E8 50%, #E8DFD0 100%);
+    background: linear-gradient(145deg, #FFFFFF 0%, #f7fafc 50%, #edf2f7 100%);
     border-radius: 6px;
     box-shadow:
-        0 15px 35px rgba(0,0,0,0.15),
-        0 5px 15px rgba(0,0,0,0.08),
+        0 15px 35px rgba(26, 54, 93, 0.12),
+        0 5px 15px rgba(26, 54, 93, 0.06),
         inset 0 1px 0 rgba(255,255,255,0.9),
-        inset 0 -1px 5px rgba(0,0,0,0.03);
-    border: 1px solid rgba(163, 140, 94, 0.15);
+        inset 0 -1px 5px rgba(26, 54, 93, 0.02);
+    border: 1px solid var(--color-silver);
 }
 
 /* Side face */
@@ -638,18 +656,18 @@ h3 {
     top: 6px;
     width: 18px;
     height: 93%;
-    background: linear-gradient(90deg, #D4C9B8 0%, #C4B9A8 100%);
+    background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e0 100%);
     transform: skewY(-40deg);
     transform-origin: top left;
     border-radius: 0 6px 6px 0;
-    box-shadow: inset -3px 0 10px rgba(0,0,0,0.08);
+    box-shadow: inset -3px 0 10px rgba(26, 54, 93, 0.06);
 }
 
 .product-card:hover .product-jar-small {
     transform: perspective(800px) rotateY(-8deg) rotateX(2deg) scale(1.05);
 }
 
-/* Color stripe on box - Pure */
+/* Color stripe on box - Pure (dark blue) */
 .jar-label-small::before {
     content: '';
     position: absolute;
@@ -657,19 +675,19 @@ h3 {
     left: 0;
     right: 0;
     height: 8px;
-    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    background: linear-gradient(90deg, #1a365d 0%, #2b6cb0 100%);
     border-radius: 6px 6px 0 0;
     z-index: 1;
 }
 
-/* Marine variant */
+/* Marine variant (lighter blue) */
 .product-jar-marine .jar-label-small::before {
-    background: linear-gradient(90deg, #5A9AB8 0%, #7AB8D4 100%);
+    background: linear-gradient(90deg, #2b6cb0 0%, #4299e1 100%);
 }
 
-/* Beauty variant */
+/* Beauty variant (teal/green-blue) */
 .product-jar-beauty .jar-label-small::before {
-    background: linear-gradient(90deg, #C17B8E 0%, #D49AAB 100%);
+    background: linear-gradient(90deg, #285e61 0%, #38b2ac 100%);
 }
 
 .jar-label-small {
@@ -788,7 +806,7 @@ h3 {
    ======================================== */
 .benefits {
     padding: var(--spacing-2xl) 0;
-    background-color: var(--color-bg-warm);
+    background-color: var(--color-bg-section);
 }
 
 .benefits-grid {
@@ -814,7 +832,8 @@ h3 {
     width: 80px;
     height: 80px;
     margin: 0 auto var(--spacing-md);
-    background-color: var(--color-gold-light);
+    background-color: var(--color-silver-light);
+    border: 2px solid var(--color-primary-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -872,8 +891,8 @@ h3 {
     flex-shrink: 0;
     width: 48px;
     height: 48px;
-    background-color: var(--color-gold-light);
-    color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--color-white);
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: 1rem;
@@ -904,12 +923,13 @@ h3 {
 .process-visual {
     width: 350px;
     height: 350px;
-    background: linear-gradient(135deg, var(--color-bg-cream) 0%, var(--color-bg-warm) 100%);
+    background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-bg-section) 100%);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    border: 2px solid var(--color-silver);
 }
 
 .molecule {
@@ -990,7 +1010,20 @@ h3 {
    ======================================== */
 .science {
     padding: var(--spacing-2xl) 0;
-    background: linear-gradient(135deg, var(--color-bg-cream) 0%, var(--color-bg-warm) 100%);
+    background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-section) 100%);
+    position: relative;
+}
+
+.science::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='70' viewBox='0 0 60 70' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='%231a365d' stroke-width='0.5' opacity='0.03'/%3E%3C/svg%3E");
+    background-size: 60px 70px;
+    pointer-events: none;
 }
 
 .science-grid {
@@ -1064,7 +1097,7 @@ h3 {
     display: flex;
     gap: 4px;
     margin-bottom: var(--spacing-md);
-    color: var(--color-gold);
+    color: var(--color-primary-light);
 }
 
 .testimonial-content p {
@@ -1083,7 +1116,7 @@ h3 {
 .author-avatar {
     width: 48px;
     height: 48px;
-    background-color: var(--color-gold-light);
+    background-color: var(--color-silver-light);
     color: var(--color-primary);
     font-family: var(--font-heading);
     font-weight: 600;
@@ -1091,6 +1124,7 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid var(--color-primary-light);
 }
 
 .testimonial-author strong {
@@ -1130,7 +1164,7 @@ h3 {
    ======================================== */
 .about {
     padding: var(--spacing-2xl) 0;
-    background-color: var(--color-bg-warm);
+    background-color: var(--color-bg-section);
 }
 
 .about-content {
@@ -1150,28 +1184,33 @@ h3 {
 .about-circle {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-bg-cream) 100%);
+    background: linear-gradient(135deg, var(--color-silver-light) 0%, var(--color-bg-alt) 100%);
     border-radius: 50%;
+    border: 2px solid var(--color-silver);
 }
 
 .leaf {
     position: absolute;
-    width: 80px;
-    height: 120px;
+    width: 60px;
+    height: 60px;
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-    border-radius: 0 100% 0 100%;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
 .leaf-1 {
-    top: -20px;
+    top: 20px;
     left: 50%;
-    transform: translateX(-50%) rotate(-30deg);
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
 }
 
 .leaf-2 {
-    bottom: 20px;
-    right: -10px;
-    transform: rotate(60deg);
+    bottom: 40px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    opacity: 0.7;
 }
 
 .about-tagline {
@@ -1244,7 +1283,8 @@ h3 {
     width: 96px;
     height: 96px;
     margin: 0 auto var(--spacing-md);
-    background-color: var(--color-bg-warm);
+    background-color: var(--color-silver-light);
+    border: 2px solid var(--color-primary-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1266,7 +1306,7 @@ h3 {
    ======================================== */
 .order {
     padding: var(--spacing-2xl) 0;
-    background: linear-gradient(135deg, var(--color-bg-cream) 0%, var(--color-bg-warm) 100%);
+    background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
 }
 
 .order-content {
@@ -1356,10 +1396,11 @@ h3 {
 }
 
 .order-summary {
-    background-color: var(--color-bg-warm);
+    background-color: var(--color-bg-section);
     padding: var(--spacing-md);
     border-radius: var(--radius-md);
     margin-top: var(--spacing-sm);
+    border: 1px solid var(--color-silver);
 }
 
 .summary-row {
@@ -1430,7 +1471,8 @@ h3 {
 .social-link {
     width: 48px;
     height: 48px;
-    background-color: var(--color-gold-light);
+    background-color: var(--color-silver-light);
+    border: 2px solid var(--color-primary-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
