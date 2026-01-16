@@ -450,8 +450,9 @@ function initTestimonialsSlider() {
 
         currentSlide = index;
 
-        // Calculate offset
-        const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginRight);
+        // Calculate offset (card width + gap)
+        const gap = 24; // matches CSS gap
+        const cardWidth = cards[0].offsetWidth + gap;
         const offset = currentSlide * itemsPerSlide * cardWidth;
 
         track.style.transform = `translateX(-${offset}px)`;

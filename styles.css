@@ -1041,12 +1041,14 @@ h3 {
 
 .testimonials-track {
     display: flex;
+    flex-wrap: nowrap;
     transition: transform 0.5s ease;
+    gap: 24px;
 }
 
 .testimonial-card {
-    flex: 0 0 calc(33.333% - var(--spacing-lg) * 2 / 3);
-    margin-right: var(--spacing-lg);
+    flex: 0 0 calc((100% - 48px) / 3);
+    min-width: calc((100% - 48px) / 3);
     background-color: var(--color-white);
     padding: var(--spacing-xl);
     border-radius: var(--radius-lg);
@@ -1725,7 +1727,8 @@ h3 {
     }
 
     .testimonial-card {
-        flex: 0 0 calc(50% - var(--spacing-lg) / 2);
+        flex: 0 0 calc((100% - 24px) / 2);
+        min-width: calc((100% - 24px) / 2);
     }
 
     .process-content,
@@ -1771,6 +1774,7 @@ h3 {
 
     .testimonial-card {
         flex: 0 0 100%;
+        min-width: 100%;
     }
 
     .contact-grid {
