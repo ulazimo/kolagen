@@ -11,7 +11,87 @@ document.addEventListener('DOMContentLoaded', function() {
     initTestimonialsSlider();
     initSmoothScroll();
     initAnimations();
+    checkOrderSuccess();
 });
+
+// ========================================
+// CHECK ORDER SUCCESS (after FormSubmit redirect)
+// ========================================
+function checkOrderSuccess() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        // Show success message
+        const successBanner = document.createElement('div');
+        successBanner.className = 'order-success-banner';
+        successBanner.innerHTML = `
+            <div class="success-content">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <div>
+                    <strong>Hvala na narudžbini!</strong>
+                    <p>Kontaktiraćemo vas uskoro sa detaljima dostave.</p>
+                </div>
+                <button class="close-banner">&times;</button>
+            </div>
+        `;
+        successBanner.style.cssText = `
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 1rem;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        `;
+
+        const style = document.createElement('style');
+        style.textContent = `
+            .success-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 0 1.5rem;
+            }
+            .success-content svg { flex-shrink: 0; }
+            .success-content div { flex: 1; }
+            .success-content strong { font-size: 1.125rem; display: block; }
+            .success-content p { margin: 0; opacity: 0.9; }
+            .close-banner {
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 0.5rem;
+                opacity: 0.8;
+            }
+            .close-banner:hover { opacity: 1; }
+        `;
+        document.head.appendChild(style);
+        document.body.prepend(successBanner);
+
+        // Close button
+        successBanner.querySelector('.close-banner').addEventListener('click', () => {
+            successBanner.remove();
+            // Clean URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+        });
+
+        // Auto-hide after 10 seconds
+        setTimeout(() => {
+            if (successBanner.parentNode) {
+                successBanner.remove();
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }, 10000);
+    }
+}
 
 // ========================================
 // HEADER SCROLL EFFECT
@@ -295,33 +375,12 @@ function initOrderForm() {
     productSelect.addEventListener('change', updateSummary);
     quantitySelect.addEventListener('change', updateSummary);
 
-    // Form submission
+    // Form submission - show loading state while submitting to FormSubmit
     form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Collect form data
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-
-        // Validate
-        if (!data.name || !data.email || !data.phone || !data.address || !data.city || !data.zip || !data.product) {
-            showFormMessage('Molimo popunite sva obavezna polja.', 'error');
-            return;
-        }
-
-        // Simulate order submission
+        // Allow form to submit normally to FormSubmit
         const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
         submitBtn.textContent = 'Slanje...';
         submitBtn.disabled = true;
-
-        setTimeout(() => {
-            showFormMessage('Hvala na porudžbini! Kontaktiraćemo vas uskoro.', 'success');
-            form.reset();
-            updateSummary();
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 1500);
     });
 
     function showFormMessage(message, type) {

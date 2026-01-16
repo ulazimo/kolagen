@@ -556,7 +556,13 @@
                     </div>
                 </div>
                 <div class="order-form-wrapper">
-                    <form class="order-form" id="orderForm">
+                    <form class="order-form" id="orderForm" action="https://formsubmit.co/tantuzi@gmail.com" method="POST">
+                        <!-- FormSubmit konfiguracija -->
+                        <input type="hidden" name="_subject" value="Nova narudžbina - Kolagen Forte">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://ulazimo.github.io/kolagen/?success=true">
+
                         <div class="form-group">
                             <label for="name">Ime i prezime *</label>
                             <input type="text" id="name" name="name" required>
