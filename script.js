@@ -412,38 +412,84 @@ function initOrderForm() {
 // TESTIMONIALS SLIDER
 // ========================================
 function initTestimonialsSlider() {
+    const slider = document.querySelector('.testimonials-slider');
+    const track = document.querySelector('.testimonials-track');
     const dots = document.querySelectorAll('.testimonial-dots .dot');
     const cards = document.querySelectorAll('.testimonial-card');
 
-    if (dots.length === 0 || window.innerWidth > 768) return;
+    if (!track || dots.length === 0) return;
 
     let currentSlide = 0;
+    let itemsPerSlide = 3;
+    let autoSlideInterval;
 
+    // Determine items per slide based on screen width
+    function updateItemsPerSlide() {
+        if (window.innerWidth <= 768) {
+            itemsPerSlide = 1;
+        } else if (window.innerWidth <= 1024) {
+            itemsPerSlide = 2;
+        } else {
+            itemsPerSlide = 3;
+        }
+    }
+
+    // Calculate total slides
+    function getTotalSlides() {
+        return Math.ceil(cards.length / itemsPerSlide);
+    }
+
+    // Show specific slide
     function showSlide(index) {
-        cards.forEach((card, i) => {
-            card.style.display = i === index ? 'block' : 'none';
-        });
+        updateItemsPerSlide();
+        const totalSlides = getTotalSlides();
 
+        // Ensure index is within bounds
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+
+        currentSlide = index;
+
+        // Calculate offset
+        const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginRight);
+        const offset = currentSlide * itemsPerSlide * cardWidth;
+
+        track.style.transform = `translateX(-${offset}px)`;
+
+        // Update dots
         dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
+            dot.classList.toggle('active', i === currentSlide);
         });
     }
 
+    // Dot click handlers
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
-            currentSlide = index;
-            showSlide(currentSlide);
+            showSlide(index);
+            resetAutoSlide();
         });
     });
 
-    // Auto-advance on mobile
-    if (window.innerWidth <= 768) {
-        showSlide(0);
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % cards.length;
-            showSlide(currentSlide);
+    // Auto-advance every 5 seconds
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(() => {
+            showSlide(currentSlide + 1);
         }, 5000);
     }
+
+    function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        startAutoSlide();
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', debounce(() => {
+        showSlide(currentSlide);
+    }, 250));
+
+    // Initialize
+    showSlide(0);
+    startAutoSlide();
 }
 
 // ========================================
