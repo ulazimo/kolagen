@@ -619,6 +619,47 @@
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_next" value="https://ulazimo.github.io/kolagen/?success=true">
+                        <input type="hidden" id="orderItemsField" name="Proizvodi" value="">
+
+                        <div class="form-group">
+                            <label>Izaberite Proizvode *</label>
+                            <div class="product-selector">
+                                <div class="product-select-item">
+                                    <div class="product-select-info">
+                                        <strong>Kolagen Peptidi Pure</strong>
+                                        <span class="product-select-price">3,490 RSD</span>
+                                    </div>
+                                    <div class="product-select-controls">
+                                        <button type="button" class="qty-btn qty-minus" data-product="pure">-</button>
+                                        <input type="number" class="qty-input" id="qty-pure" min="0" max="99" value="0" readonly>
+                                        <button type="button" class="qty-btn qty-plus" data-product="pure">+</button>
+                                    </div>
+                                </div>
+                                <div class="product-select-item">
+                                    <div class="product-select-info">
+                                        <strong>Kolagen Marine</strong>
+                                        <span class="product-select-price">4,290 RSD</span>
+                                    </div>
+                                    <div class="product-select-controls">
+                                        <button type="button" class="qty-btn qty-minus" data-product="marine">-</button>
+                                        <input type="number" class="qty-input" id="qty-marine" min="0" max="99" value="0" readonly>
+                                        <button type="button" class="qty-btn qty-plus" data-product="marine">+</button>
+                                    </div>
+                                </div>
+                                <div class="product-select-item">
+                                    <div class="product-select-info">
+                                        <strong>Kolagen Beauty+</strong>
+                                        <span class="product-select-price">4,990 RSD</span>
+                                    </div>
+                                    <div class="product-select-controls">
+                                        <button type="button" class="qty-btn qty-minus" data-product="beauty">-</button>
+                                        <input type="number" class="qty-input" id="qty-beauty" min="0" max="99" value="0" readonly>
+                                        <button type="button" class="qty-btn qty-plus" data-product="beauty">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="form-hint">Izaberite količinu za svaki proizvod koji želite da naručite</p>
+                        </div>
 
                         <div class="form-group">
                             <label for="name">Ime i prezime *</label>
@@ -649,34 +690,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="product">Proizvod *</label>
-                            <select id="product" name="product" required>
-                                <option value="">Izaberite proizvod</option>
-                                <option value="pure">Kolagen Peptidi Pure - 3,490 RSD</option>
-                                <option value="marine">Kolagen Marine - 4,290 RSD</option>
-                                <option value="beauty">Kolagen Beauty+ - 4,990 RSD</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="quantity">Količina</label>
-                            <select id="quantity" name="quantity">
-                                <option value="1">1 komad</option>
-                                <option value="2">2 komada</option>
-                                <option value="3">3 komada (10% popust)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
                             <label for="notes">Napomena (opciono)</label>
                             <textarea id="notes" name="notes" rows="3"></textarea>
                         </div>
                         <div class="order-summary" id="orderSummary">
-                            <div class="summary-row">
-                                <span>Proizvod:</span>
-                                <span id="summaryProduct">-</span>
-                            </div>
-                            <div class="summary-row">
-                                <span>Količina:</span>
-                                <span id="summaryQuantity">1</span>
+                            <h4>Vaša Narudžbina</h4>
+                            <div id="selectedProducts" class="selected-products">
+                                <p class="no-products">Niste izabrali nijedan proizvod</p>
                             </div>
                             <div class="summary-row">
                                 <span>Dostava:</span>
@@ -687,7 +707,7 @@
                                 <span id="summaryTotal">0 RSD</span>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-large btn-full">Naruči</button>
+                        <button type="submit" class="btn btn-primary btn-large btn-full" id="submitOrderBtn">Naruči</button>
                     </form>
                 </div>
             </div>
