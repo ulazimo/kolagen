@@ -322,12 +322,11 @@ function initCart() {
 // ========================================
 function initOrderForm() {
     const form = document.getElementById('orderForm');
-    const productSelect = document.getElementById('product');
-    const quantitySelect = document.getElementById('quantity');
-    const summaryProduct = document.getElementById('summaryProduct');
-    const summaryQuantity = document.getElementById('summaryQuantity');
+    const selectedProductsDiv = document.getElementById('selectedProducts');
     const summaryShipping = document.getElementById('summaryShipping');
     const summaryTotal = document.getElementById('summaryTotal');
+    const orderItemsField = document.getElementById('orderItemsField');
+    const submitBtn = document.getElementById('submitOrderBtn');
 
     const prices = {
         pure: 3490,
@@ -344,41 +343,106 @@ function initOrderForm() {
     const shippingCost = 290;
     const freeShippingThreshold = 5000;
 
-    function updateSummary() {
-        const productId = productSelect.value;
-        const quantity = parseInt(quantitySelect.value);
+    // Quantity state
+    const quantities = {
+        pure: 0,
+        marine: 0,
+        beauty: 0
+    };
 
-        if (!productId) {
-            summaryProduct.textContent = '-';
-            summaryQuantity.textContent = quantity;
-            summaryTotal.textContent = '0 RSD';
+    // Plus/minus button handlers
+    document.querySelectorAll('.qty-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const productId = btn.dataset.product;
+            const input = document.getElementById(`qty-${productId}`);
+            let currentQty = parseInt(input.value) || 0;
+
+            if (btn.classList.contains('qty-plus')) {
+                if (currentQty < 99) {
+                    currentQty++;
+                }
+            } else if (btn.classList.contains('qty-minus')) {
+                if (currentQty > 0) {
+                    currentQty--;
+                }
+            }
+
+            input.value = currentQty;
+            quantities[productId] = currentQty;
+            updateOrderSummary();
+        });
+    });
+
+    // Update order summary
+    function updateOrderSummary() {
+        const selectedProducts = [];
+        let subtotal = 0;
+
+        // Collect selected products
+        Object.keys(quantities).forEach(productId => {
+            const qty = quantities[productId];
+            if (qty > 0) {
+                const price = prices[productId];
+                const itemTotal = price * qty;
+                subtotal += itemTotal;
+                selectedProducts.push({
+                    id: productId,
+                    name: productNames[productId],
+                    quantity: qty,
+                    price: price,
+                    total: itemTotal
+                });
+            }
+        });
+
+        // Update selected products display
+        if (selectedProducts.length === 0) {
+            selectedProductsDiv.innerHTML = '<p class="no-products">Niste izabrali nijedan proizvod</p>';
+        } else {
+            let html = '';
+            selectedProducts.forEach(product => {
+                html += `
+                    <div class="selected-product-item">
+                        <span class="product-name">${product.name}</span>
+                        <span class="product-qty">x${product.quantity}</span>
+                        <span class="product-price">${product.total.toLocaleString('sr-RS')} RSD</span>
+                    </div>
+                `;
+            });
+            selectedProductsDiv.innerHTML = html;
+        }
+
+        // Calculate shipping
+        const shipping = subtotal >= freeShippingThreshold ? 0 : (subtotal > 0 ? shippingCost : 0);
+        const total = subtotal + shipping;
+
+        // Update summary
+        summaryShipping.textContent = shipping === 0 && subtotal > 0 ? 'Besplatno' : (subtotal > 0 ? `${shipping} RSD` : '290 RSD');
+        summaryTotal.textContent = `${total.toLocaleString('sr-RS')} RSD`;
+
+        // Prepare order items for form submission
+        if (selectedProducts.length > 0) {
+            const orderText = selectedProducts.map(p =>
+                `${p.name} - ${p.quantity}x (${p.total.toLocaleString('sr-RS')} RSD)`
+            ).join(', ');
+            orderItemsField.value = orderText;
+        } else {
+            orderItemsField.value = '';
+        }
+    }
+
+    // Form validation and submission
+    form.addEventListener('submit', (e) => {
+        // Check if at least one product is selected
+        const hasProducts = Object.values(quantities).some(qty => qty > 0);
+
+        if (!hasProducts) {
+            e.preventDefault();
+            showFormMessage('Molimo izaberite bar jedan proizvod', 'error');
             return;
         }
 
-        const productPrice = prices[productId];
-        let subtotal = productPrice * quantity;
-
-        // Apply 10% discount for 3 items
-        if (quantity === 3) {
-            subtotal = Math.round(subtotal * 0.9);
-        }
-
-        const shipping = subtotal >= freeShippingThreshold ? 0 : shippingCost;
-        const total = subtotal + shipping;
-
-        summaryProduct.textContent = productNames[productId];
-        summaryQuantity.textContent = quantity;
-        summaryShipping.textContent = shipping === 0 ? 'Besplatno' : `${shipping} RSD`;
-        summaryTotal.textContent = `${total.toLocaleString('sr-RS')} RSD`;
-    }
-
-    productSelect.addEventListener('change', updateSummary);
-    quantitySelect.addEventListener('change', updateSummary);
-
-    // Form submission - show loading state while submitting to FormSubmit
-    form.addEventListener('submit', (e) => {
         // Allow form to submit normally to FormSubmit
-        const submitBtn = form.querySelector('button[type="submit"]');
         submitBtn.textContent = 'Slanje...';
         submitBtn.disabled = true;
     });
@@ -406,6 +470,9 @@ function initOrderForm() {
 
         setTimeout(() => msg.remove(), 5000);
     }
+
+    // Initialize
+    updateOrderSummary();
 }
 
 // ========================================

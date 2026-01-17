@@ -1420,6 +1420,138 @@ h3 {
     font-size: 1.125rem;
 }
 
+/* Product Selector */
+.product-selector {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
+}
+
+.product-select-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    background-color: var(--color-bg-section);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.product-select-item:hover {
+    border-color: var(--color-primary-light);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.product-select-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.product-select-info strong {
+    font-size: 1rem;
+    color: var(--color-text);
+}
+
+.product-select-price {
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.product-select-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.qty-btn {
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--color-primary);
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border-radius: var(--radius-sm);
+    font-size: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-btn:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.qty-btn:active {
+    transform: scale(0.95);
+}
+
+.qty-input {
+    width: 60px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-white);
+}
+
+.form-hint {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.order-summary h4 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.selected-products {
+    margin-bottom: var(--spacing-sm);
+}
+
+.selected-products .no-products {
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+    font-style: italic;
+    margin: 0;
+    padding: var(--spacing-xs) 0;
+}
+
+.selected-product-item {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-xs) 0;
+    font-size: 0.9375rem;
+    color: var(--color-text);
+}
+
+.selected-product-item .product-name {
+    font-weight: 500;
+}
+
+.selected-product-item .product-qty {
+    color: var(--color-text-light);
+    margin-right: auto;
+    margin-left: 0.5rem;
+}
+
+.selected-product-item .product-price {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
 /* ========================================
    CONTACT SECTION
    ======================================== */
@@ -1847,6 +1979,17 @@ h3 {
 
     .form-row {
         grid-template-columns: 1fr;
+    }
+
+    .product-select-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    .product-select-controls {
+        width: 100%;
+        justify-content: flex-end;
     }
 
     .about-badges {
