@@ -812,6 +812,25 @@ h3 {
     border-top: 1px solid var(--color-border);
 }
 
+.product-price-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.product-price-old {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.product-price-old small {
+    font-size: 0.75rem;
+}
+
 .product-price {
     font-family: var(--font-heading);
     font-size: 1.5rem;
@@ -822,6 +841,26 @@ h3 {
 .product-price small {
     font-size: 0.875rem;
     font-weight: 500;
+}
+
+.sale-price {
+    color: #c0392b;
+}
+
+.discount-badge {
+    background: #c0392b;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.45rem;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+}
+
+.product-select-price-old {
+    color: #999;
+    font-size: 0.85em;
+    margin-right: 0.2rem;
 }
 
 .add-to-cart {

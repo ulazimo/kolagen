@@ -163,9 +163,9 @@ function initCart() {
     let cart = [];
 
     const products = {
-        pure: { name: 'Kolagen Peptidi Pure', price: 3490 },
-        marine: { name: 'Kolagen Marine', price: 4290 },
-        beauty: { name: 'Kolagen Beauty+', price: 4990 }
+        pure: { name: 'Kolagen Peptidi Pure', price: 2490 },
+        marine: { name: 'Kolagen Marine', price: 2990 },
+        beauty: { name: 'Kolagen Beauty+', price: 3490 }
     };
 
     // Open cart
@@ -329,9 +329,9 @@ function initOrderForm() {
     const submitBtn = document.getElementById('submitOrderBtn');
 
     const prices = {
-        pure: 3490,
-        marine: 4290,
-        beauty: 4990
+        pure: 2490,
+        marine: 2990,
+        beauty: 3490
     };
 
     const productNames = {
